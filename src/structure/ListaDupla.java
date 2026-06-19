@@ -1,5 +1,4 @@
 package structure;
-
 import model.Filme;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +6,17 @@ import java.util.List;
 public class ListaDupla {
     private NoDuplo cabeca;  // MRU
     private NoDuplo cauda;   // LRU
-    private int     tamanho;
+    private int tamanho;
 
-    public NoDuplo getCabeca() { return cabeca; }
-    public NoDuplo getCauda()  { return cauda; }
-    public int     getTamanho(){ return tamanho; }
+    public NoDuplo getCabeca() {
+        return cabeca;
+    }
+    public NoDuplo getCauda(){
+        return cauda;
+    }
+    public int getTamanho(){
+        return tamanho;
+    }
 
     public NoDuplo inserirNoInicio(Filme filme) {
         NoDuplo novo = new NoDuplo(filme);
@@ -27,10 +32,14 @@ public class ListaDupla {
     }
 
     public void moverParaInicio(NoDuplo no) {
-        if (no == cabeca) return;
-        if (no.getAnterior() != null) no.getAnterior().setProximo(no.getProximo());
-        if (no.getProximo()  != null) no.getProximo().setAnterior(no.getAnterior());
-        if (no == cauda)              cauda = no.getAnterior();
+        if (no == cabeca)
+            return;
+        if (no.getAnterior() != null)
+            no.getAnterior().setProximo(no.getProximo());
+        if (no.getProximo()  != null)
+            no.getProximo().setAnterior(no.getAnterior());
+        if (no == cauda)
+            cauda = no.getAnterior();
         no.setAnterior(null);
         no.setProximo(cabeca);
         if (cabeca != null) cabeca.setAnterior(no);
@@ -39,18 +48,15 @@ public class ListaDupla {
     }
 
     public void removerNo(NoDuplo no) {
-        if (no.getAnterior() != null) no.getAnterior().setProximo(no.getProximo());
-        else                          cabeca = no.getProximo();
-        if (no.getProximo()  != null) no.getProximo().setAnterior(no.getAnterior());
-        else                          cauda  = no.getAnterior();
+        if (no.getAnterior() != null)
+            no.getAnterior().setProximo(no.getProximo());
+        else
+            cabeca = no.getProximo();
+        if (no.getProximo()  != null)
+            no.getProximo().setAnterior(no.getAnterior());
+        else
+            cauda  = no.getAnterior();
         tamanho--;
-    }
-
-    public Filme removerUltimo() {
-        if (cauda == null) return null;
-        Filme f = cauda.getFilme();
-        removerNo(cauda);
-        return f;
     }
 
     public List<Filme> listar() {

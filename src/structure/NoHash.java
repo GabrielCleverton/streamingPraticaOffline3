@@ -13,23 +13,18 @@ public class NoHash {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public NoLista getReferencia() {
         return referencia;
     }
-
     public void setReferencia(NoLista referencia) {
         this.referencia = referencia;
     }
-
     public NoHash getProximo() {
         return proximo;
     }
-
     public void setProximo(NoHash proximo) {
         this.proximo = proximo;
     }

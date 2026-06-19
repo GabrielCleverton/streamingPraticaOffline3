@@ -6,7 +6,7 @@ public class NoLista {
     private NoLista proximo;
 
     public NoLista(Filme filme) {
-        this.filme   = filme;
+        this.filme = filme;
         this.proximo = null;
     }
 

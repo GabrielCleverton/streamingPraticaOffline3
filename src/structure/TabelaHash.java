@@ -5,21 +5,8 @@ public class TabelaHash {
     private int M = 1009;
     private NoHash[] tabela = new NoHash[M];
 
-    public int getM(){
-        return M;
-    }
-    public void setM(int m){
-        M = m;
-    }
-    public NoHash[] getTabela(){
-        return tabela;
-    }
-    public void setTabela(NoHash[] t){
-        this.tabela = t;
-    }
-
     public int hash(int id) {
-        long k   = ((long) id) & 0xFFFFFFFFL;
+        long k = ((long) id) & 0xFFFFFFFFL;
         double f = (k * PHI) % 1.0;
         return (int) Math.floor(M * f);
     }
@@ -28,7 +15,7 @@ public class TabelaHash {
         int h  = hash(id);
         NoHash no = tabela[h];
         while (no != null) {
-            if (no.getId() == id) return; // já existe
+            if (no.getId() == id) return;
             no = no.getProximo();
         }
         NoHash novo = new NoHash(id, referencia);
@@ -51,7 +38,6 @@ public class TabelaHash {
                     tabela[h] = cur;
                 }
                 if (contadorRef != null) contadorRef[0] = comp;
-                System.out.println("[Tabela Hash] Comparações: " + comp);
                 return cur.getReferencia();
             }
             prev = cur;
@@ -62,13 +48,15 @@ public class TabelaHash {
     }
 
     public boolean remover(int id) {
-        int    h    = hash(id);
+        int h = hash(id);
         NoHash prev = null;
         NoHash cur  = tabela[h];
         while (cur != null) {
             if (cur.getId() == id) {
-                if (prev == null) tabela[h] = cur.getProximo();
-                else              prev.setProximo(cur.getProximo());
+                if (prev == null)
+                    tabela[h] = cur.getProximo();
+                else
+                    prev.setProximo(cur.getProximo());
                 return true;
             }
             prev = cur;

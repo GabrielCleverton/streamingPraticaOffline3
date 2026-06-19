@@ -4,12 +4,7 @@ import model.Filme;
 public class ListaLigada {
     private NoLista cabeca;
 
-    public NoLista getCabeca(){
-        return cabeca;
-    }
-    public void setCabeca(NoLista c){
-        this.cabeca = c;
-    }
+    public NoLista getCabeca(){ return cabeca; }
 
     public NoLista inserir(Filme filme) {
         NoLista novo = new NoLista(filme);
@@ -25,20 +20,19 @@ public class ListaLigada {
             comp++;
             if (temp.getFilme().getId() == id) {
                 if (contadorRef != null) contadorRef[0] = comp;
-                System.out.println("[Busca Linear] Comparações: " + comp);
                 return temp.getFilme();
             }
             temp = temp.getProximo();
         }
         if (contadorRef != null) contadorRef[0] = comp;
-        System.out.println("[Busca Linear] Filme não encontrado após " + comp + " comparações.");
         return null;
     }
 
     public Filme buscarPorNome(String nome) {
         NoLista temp = cabeca;
         while (temp != null) {
-            if (temp.getFilme().getNome().equalsIgnoreCase(nome.trim())) return temp.getFilme();
+            if (temp.getFilme().getNome().equalsIgnoreCase(nome.trim()))
+                return temp.getFilme();
             temp = temp.getProximo();
         }
         return null;
